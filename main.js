@@ -2,6 +2,8 @@ const todoItem = document.querySelector(".todo-item");
 const todoInput = document.querySelector(".todo-input");
 const addBtn = document.querySelector(".btn-add");
 const deleteBtn = document.querySelector(".btn-dlt");
+const bodY = document.querySelector("body");
+const load = document.querySelector(".btn-load");
 
 const quests = [];
 
@@ -50,4 +52,28 @@ todoItem.addEventListener("click", (event) => {
   finishQuest(id);
   render();
   console.log("HHAH");
+});
+
+function saveProgress() {
+  localStorage.setItem("do-list", JSON.stringify(quests));
+}
+
+function loadProgress() {
+  const savedQuests = localStorage.getItem("do-list");
+  if (savedQuests) {
+    quests = JSON.parse(savedQuests);
+    render();
+  }
+}
+
+bodY.addEventListener("click", () => {
+  saveProgress();
+});
+
+todoInput.addEventListener("focus", () => {
+  todoInput.value = "";
+});
+
+load.addEventListener("click", () => {
+  loadProgress();
 });

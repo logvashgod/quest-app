@@ -78,3 +78,7 @@ button:hover::after {
 button:hover::before {
   transform: translate(4px, 4px);
 }
+
+.btn-load {
+  position: absolute;
+}
